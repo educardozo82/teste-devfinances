@@ -23,3 +23,13 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('addAssets', (asset) => {
+    cy.get('[class="button new"]').click();
+    cy.get('[placeholder="Descrição"]').type(asset.title);
+    cy.get('[type="number"]').type(asset.value);
+    cy.get('[type="date"]').type(asset.date);
+    cy.get('button').click();
+    // ascertação
+    cy.get('#totalDisplay').should('be.visible');
+  });
